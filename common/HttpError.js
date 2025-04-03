@@ -30,6 +30,12 @@ export class NotFoundError extends HttpError {
     }
 }
 
+export class TooManyRequestsError extends HttpError {
+    constructor(message) {
+        super(429, 'Too Many Requests', message);
+    }
+}
+
 export class InternalServerError extends HttpError {
     constructor(message) {
         super(500, 'Internal Server Error', message);
