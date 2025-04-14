@@ -1,16 +1,16 @@
-import HttpError, { BadRequestError, ForbiddenError, InternalServerError, NotFoundError, UnauthorizedError } from "../common/HttpError.js";
+import HttpError from "../common/HttpError.js";
 
 
 const error = (error, req, res, next) =>  {
 
     if (error instanceof HttpError) {
-        console.log(error);
+        console.log(error);    
         return res.status(error.status).json({
             status: error.status,
             name: error.name,
             message: error.message
         });
-    }
+    } 
     
 };
 
