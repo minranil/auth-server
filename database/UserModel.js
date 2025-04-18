@@ -35,6 +35,10 @@ const UserModel = (sequelize, type) => {
             get() {
                 return `${this.firstName} ${this.lastName}`
             }
+        },
+        isVerified: {
+            type: type.BOOLEAN,
+            defaultValue: false,
         }
     });
 }

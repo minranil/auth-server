@@ -15,15 +15,18 @@ class UserService {
         const hashPassword = await bcrypt.hash(password, 8);
         const user = await User.build({ email: email, password: hashPassword, firstName: firstName, lastName: lastName });
         await user.save();
+
+        return user;
     }
 
-    async findByPk(id) {
-        const user = await User.findByPk(id, {
-            attributes: { exclude: ['password'] }
-        });
+    async findByIdAndUpdate (id, updatedData) {
+        const user = await User.findByPk(id);
         if(!user) {
             throw new NotFoundError('User not found!');
         }
+
+        await user.update(updatedData);
+        await user.save();
 
         return user;
     }
